@@ -7,7 +7,7 @@ spring:
         url: jdbc:mysql://127.0.0.1:3306/school
         username: root
         password: a5200590
-        # ʹ��druid����Դ
+        # 使用druid数据源   
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
         filters: stat
