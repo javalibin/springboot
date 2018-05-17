@@ -20,7 +20,6 @@ public class CookieUtils {
         }else {
         	log.info("cokkie内容为空");
         }
-
         return null;
     }
 

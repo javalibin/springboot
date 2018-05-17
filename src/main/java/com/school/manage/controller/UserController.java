@@ -49,13 +49,21 @@ public class UserController {
 			return userService.login(user,response);
 		}
 		
-		@RequestMapping(value ="/get", method = RequestMethod.POST)
+		@RequestMapping(value ="/list", method = RequestMethod.POST)
 	    @ResponseBody
 		public ResultDTO<List<User>> userInfo(){
 			List<User> list = new ArrayList<User>();
+			User user = new User();
+			user.setAge(18);
+			user.setBirthday("1996-11-20");
+			user.setJurisdictionId(0);
+			user.setName("我的个乖乖");
+			user.setPwd("a111111");
+			user.setSex("男");
+			list.add(user);
 			ResultDTO<List<User>> result = new ResultDTO<List<User>>();
 			result.setData(list);
-			return result;
+			return result.success(list,UserEnum.LOGINSTATUS.getMsg());
 		}
 		
 		@RequestMapping(value ="/islogin", method = RequestMethod.POST)
@@ -76,7 +84,7 @@ public class UserController {
 			if(!UserEnum.LOGINSTATUS.getMsg().equals(String.valueOf(results))) {
 				return result.fail("用户登录信息不存在");
 			}
-			return result.success(UserEnum.LOGINSUCCESS.getMsg());
+			return result.success(value);
 		}
 		
 }
