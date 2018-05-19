@@ -13,7 +13,8 @@ public enum  UserEnum {
 		ID("id",10),
 		GMTCREATE("gmtCreate",11),
 		GMTMODIFY("gmtModify",12),
-		LOGINSTATUS("success",13);
+		LOGINSTATUS("success",13),
+		SEX("sex",14);
 		private String msg;  
 	    private int code;  
 	    // 构造方法  

@@ -14,6 +14,8 @@ public class User {
     private String gmtModify;
 
     private String pwd;
+    
+    private String newPwd;
 
     private String birthday;
 
@@ -90,4 +92,13 @@ public class User {
     public void setJurisdictionId(Integer jurisdictionId) {
         this.jurisdictionId = jurisdictionId;
     }
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+    
 }

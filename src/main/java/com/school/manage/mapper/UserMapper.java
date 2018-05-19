@@ -1,5 +1,7 @@
 package com.school.manage.mapper;
 
+import java.util.List;
+
 import com.school.manage.model.User;
 
 public interface UserMapper {
@@ -14,4 +16,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<User> selectAll();
+    
+    User selectById(String id);
 }

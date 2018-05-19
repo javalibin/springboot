@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>学生课程表管理系统</title>
+    <link rel="stylesheet" href="css/public.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../../css/base.css"/>
+     <script src="js/jquery.js"></script>
+	<script src="js/load.js"></script>
+	<style>
+		.course_table{ width: 100%;border-spacing: 0;}
+		.course_table th{ height: 25px; background: #f3f8f8;color: #6d8498; font-weight: 400;font-size: 30px;}
+		.course_table td{font-size:25px;height: 50%;border-bottom: 1px dashed #eee;text-align: center;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+		.course_table tr td:first-child {background: #f3f8f8;color: #698196;border-bottom: none;}
+		.add{background:#e1ebf2 center no-repeat;background-size: 100% 100%;height: 100%;color: #999999;line-height: 3em;width: 3em;margin:0 auto;
+		 font-size: 0.925em;display: none;}
+		.add span{font-size: 1.25em;color: #7993ab;}
+		.add.on{display: block;}
+		.course_all{padding-bottom: 0.5em;}
+        .buttonsexsex{
+        			height:100%;width:200px;
+        			word-wrap: break-word !important;
+				    word-break: break-all !important;
+				    white-space: normal !important;
+        			border: solid 1px #ddd;
+    				border-radius: 4px;
+				    font-size: 22px;
+				    padding: 40px 15px;
+				    margin: 0;
+				    display: inline-block;
+				    line-height: 20px;
+    				transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;
+    				coler:#fff;
+    	}
+        .shuxue{background: #ff9e9f;border-color:#ff9e9f;} 
+        .yingyu{background: #ffdf62;border-color:#ffdf62;} 
+        .zhengzhi{background: #61e7f0;border-color:#61e7f0;}
+        .wuli{background: #e4e275;border-color:#e4e275;}    
+        .meishu{background: #fdc081;border-color:#fdc081;}
+        .huaxue{background: #c2b4f6;border-color:#c2b4f6;} 
+         .dili{background: #62e48a;border-color:#62e48a;}
+        .shengwu{background: #ffc262;border-color:#ffc262;}
+         .tiyu{background: #c2ec5c;border-color:#c2ec5c;}
+        .dele{background: #FFF; color: #666666;} 
+        .yinyue{background: #c2ec5c;}
+        .course_all div{margin-right: 0.5em;}
+        .course_all div:nth-child(7){margin-right: 0;}
+        .add_kemu{padding: 0.5em;background: #ff9e9f;color: #FFF;border-radius: 0.25em;font-size: 0.85em;margin-left: 0.5em;}
+		.course_all{padding:0.75em 0.5em 0em 0.5em;}
+		.course_all div{width: 3em;height: 3em;text-align: center;display: inline-block;margin-bottom: 0.5em;}
+		.div{with:100px,height:100px}
+	</style>
+</head>
+<body>
+<!--头部-->
+ <div id= "header"></div>
+<!--主体内容-->
+    <section class="publicMian ">
+        <div id = "left"></div>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>课程页面</span>
+            </div>
+            <div style="display:none" id= "jurisdictionIdsIDS"></div>
+         	<table class="course_table">
+			    <tbody id="course_html">
+			        <tr><th width="30"></th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+			        <tr>
+			            <td>1</td>
+			            <td  onclick="add_course(1,1)"><input type="button" id="1_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_1span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,1)"><input type="button" id="2_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_1span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,1)"><input type="button" id="3_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_1span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,1)"><input type="button" id="4_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_1span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,1)"><input type="button" id="5_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_1span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,1)"><input type="button" id="6_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_1span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,1)"><input type="button" id="7_1" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_1span">请老师操作安排</span></td>
+			        </tr>
+			         <tr>
+			            <td>2</td>
+			            <td  onclick="add_course(1,2)"><input type="button" id="1_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_2span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,2)"><input type="button" id="2_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_2span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,2)"><input type="button" id="3_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_2span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,2)"><input type="button" id="4_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_2span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,2)"><input type="button" id="5_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_2span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,2)"><input type="button" id="6_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_2span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,2)"><input type="button" id="7_2" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_2span">请老师操作安排</span></td>
+			        </tr>
+			        <tr>
+			            <td>3</td>
+			            <td  onclick="add_course(1,3)"><input type="button" id="1_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_3span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,3)"><input type="button" id="2_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_3span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,3)"><input type="button" id="3_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_3span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,3)"><input type="button" id="4_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_3span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,3)"><input type="button" id="5_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_3span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,3)"><input type="button" id="6_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_3span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,3)"><input type="button" id="7_3" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_3span">请老师操作安排</span></td>
+			        </tr>
+			         <tr>
+			            <td>4</td>
+			            <td  onclick="add_course(1,4)"><input type="button" id="1_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_4span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,4)"><input type="button" id="2_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_4span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,4)"><input type="button" id="3_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_4span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,4)"><input type="button" id="4_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_4span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,4)"><input type="button" id="5_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_4span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,4)"><input type="button" id="6_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_4span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,4)"><input type="button" id="7_4" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_4span">请老师操作安排</span></td>
+			        </tr>
+			       <tr>
+			            <td>5</td>
+			            <td  onclick="add_course(1,5)"><input type="button" id="1_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_5span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,5)"><input type="button" id="2_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_5span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,5)"><input type="button" id="3_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_5span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,5)"><input type="button" id="4_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_5span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,5)"><input type="button" id="5_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_5span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,5)"><input type="button" id="6_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_5span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,5)"><input type="button" id="7_5" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_5span">请老师操作安排</span></td>
+			        </tr>
+			        <tr>
+			            <td>6</td>
+			            <td  onclick="add_course(1,6)"><input type="button" id="1_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "1_6span">请老师操作安排</span></td>
+			            <td  onclick="add_course(2,6)"><input type="button" id="2_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "2_6span">请老师操作安排</span></td>
+			           <td  onclick="add_course(3,6)"><input type="button" id="3_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "3_6span">请老师操作安排</span></td>
+			            <td  onclick="add_course(4,6)"><input type="button" id="4_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "4_6span">请老师操作安排</span></td>
+			            <td  onclick="add_course(5,6)"><input type="button" id="5_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "5_6span">请老师操作安排</span></td>
+			            <td  onclick="add_course(6,6)"><input type="button" id="6_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "6_6span">请老师操作安排</span></td>
+			            <td onclick="add_course(7,6)"><input type="button" id="7_6" class="buttonsexsex zhengzhi" value=""><span style="display:none" id = "7_6span">请老师操作安排</span></td>
+			        </tr>
+			    </tbody>
+			</table>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+</html>

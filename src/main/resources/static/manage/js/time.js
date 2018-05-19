@@ -48,7 +48,7 @@ function fn(){
 	}
 }
 fn();
-setInterval(fn,1000);
+setInterval(fn(),1000);
 function totwo(n){
     if(n<=9){
         return n = "0"+n;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.manage.mapper.JurisdictionMapper">
+  <resultMap id="BaseResultMap" type="com.school.manage.model.Jurisdiction">
+    <id column="jurisdiction_id" jdbcType="INTEGER" property="jurisdictionId" />
+    <result column="subject" jdbcType="CHAR" property="subject" />
+    <result column="message" jdbcType="CHAR" property="message" />
+    <result column="usermanage" jdbcType="CHAR" property="usermanage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    jurisdiction_id, subject, message, usermanage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jurisdiction
+    where jurisdiction_id = #{jurisdictionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jurisdiction
+    where jurisdiction_id = #{jurisdictionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.school.manage.model.Jurisdiction">
+    insert into jurisdiction (jurisdiction_id, subject, message, 
+      usermanage)
+    values (#{jurisdictionId,jdbcType=INTEGER}, #{subject,jdbcType=CHAR}, #{message,jdbcType=CHAR}, 
+      #{usermanage,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.manage.model.Jurisdiction">
+    insert into jurisdiction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jurisdictionId != null">
+        jurisdiction_id,
+      </if>
+      <if test="subject != null">
+        subject,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="usermanage != null">
+        usermanage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jurisdictionId != null">
+        #{jurisdictionId,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=CHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=CHAR},
+      </if>
+      <if test="usermanage != null">
+        #{usermanage,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.manage.model.Jurisdiction">
+    update jurisdiction
+    <set>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=CHAR},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=CHAR},
+      </if>
+      <if test="usermanage != null">
+        usermanage = #{usermanage,jdbcType=CHAR},
+      </if>
+    </set>
+    where jurisdiction_id = #{jurisdictionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.manage.model.Jurisdiction">
+    update jurisdiction
+    set subject = #{subject,jdbcType=CHAR},
+      message = #{message,jdbcType=CHAR},
+      usermanage = #{usermanage,jdbcType=CHAR}
+    where jurisdiction_id = #{jurisdictionId,jdbcType=INTEGER}
+  </update>
+</mapper>

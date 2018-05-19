@@ -21,6 +21,17 @@
     from user
     where name = #{name,jdbcType=VARCHAR}
   </select>
+   <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id}
+  </select>
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
@@ -36,9 +47,6 @@
   <insert id="insertSelective" parameterType="com.school.manage.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="name != null">
         name,
       </if>
@@ -48,12 +56,8 @@
       <if test="age != null">
         age,
       </if>
-      <if test="gmtCreate != null">
         gmt_create,
-      </if>
-      <if test="gmtModify != null">
         gmt_modify,
-      </if>
       <if test="pwd != null">
         pwd,
       </if>
@@ -65,9 +69,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -77,12 +78,8 @@
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtModify != null">
-        #{gmtModify,jdbcType=VARCHAR},
-      </if>
+        now(),
+        now(),
       <if test="pwd != null">
         #{pwd,jdbcType=VARCHAR},
       </if>
@@ -106,20 +103,15 @@
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtModify != null">
-        gmt_modify = #{gmtModify,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null">
-        pwd = #{pwd,jdbcType=VARCHAR},
+        gmt_modify = now(),
+      <if test="newPwd != null">
+        pwd = #{newPwd},
       </if>
       <if test="birthday != null">
         birthday = #{birthday,jdbcType=VARCHAR},
       </if>
       <if test="jurisdictionId != null">
-        jurisdiction_id = #{jurisdictionId,jdbcType=INTEGER},
+        jurisdiction_id = #{jurisdictionId},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

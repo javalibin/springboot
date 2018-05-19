@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.manage.mapper.SubjectMapper">
+  <resultMap id="BaseResultMap" type="com.school.manage.model.Subject">
+    <id column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="subject_name" jdbcType="VARCHAR" property="subjectName" />
+    <result column="dates_id" jdbcType="INTEGER" property="datesId" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="cloun" jdbcType="VARCHAR" property="cloun" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    subject_id, subject_name, dates_id, other, cloun
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from subject
+  </select>
+  <select id="selectByRowCloun" parameterType="com.school.manage.model.Subject" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from subject where dates_id =  #{datesId} and cloun = #{cloun}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.school.manage.model.Subject">
+    insert into subject ( subject_name, dates_id, 
+      other, cloun)
+    values ( #{subjectName,jdbcType=VARCHAR}, #{datesId,jdbcType=INTEGER}, 
+      #{other,jdbcType=VARCHAR}, #{cloun,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.manage.model.Subject">
+    insert into subject
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="subjectName != null">
+        subject_name,
+      </if>
+      <if test="datesId != null">
+        dates_id,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="cloun != null">
+        cloun,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="subjectName != null">
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="datesId != null">
+        #{datesId,jdbcType=INTEGER},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="cloun != null">
+        #{cloun,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.manage.model.Subject">
+    update subject
+    <set>
+      <if test="subjectName != null">
+        subject_name = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="datesId != null">
+        dates_id = #{datesId,jdbcType=INTEGER},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="cloun != null">
+        cloun = #{cloun,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByRowCloun" parameterType="com.school.manage.model.Subject">
+    update subject
+    <set>
+      <if test="subjectName != null">
+        subject_name = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="datesId != null">
+        dates_id = #{datesId,jdbcType=INTEGER},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="cloun != null">
+        cloun = #{cloun,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dates_id =  #{datesId} and cloun = #{cloun}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.manage.model.Subject">
+    update subject
+    set subject_name = #{subjectName,jdbcType=VARCHAR},
+      dates_id = #{datesId,jdbcType=INTEGER},
+      other = #{other,jdbcType=VARCHAR},
+      cloun = #{cloun,jdbcType=VARCHAR}
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+</mapper>

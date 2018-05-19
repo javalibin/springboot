@@ -21,6 +21,8 @@ import com.school.manage.model.User;
 import com.school.manage.service.UserService;
 import com.school.manage.util.CookieUtils;
 import com.school.manage.util.RedisUtil;
+import com.school.manage.model.Jurisdiction;
+import com.school.manage.model.Subject;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,40 +53,50 @@ public class UserController {
 		
 		@RequestMapping(value ="/list", method = RequestMethod.POST)
 	    @ResponseBody
-		public ResultDTO<List<User>> userInfo(){
-			List<User> list = new ArrayList<User>();
-			User user = new User();
-			user.setAge(18);
-			user.setBirthday("1996-11-20");
-			user.setJurisdictionId(0);
-			user.setName("我的个乖乖");
-			user.setPwd("a111111");
-			user.setSex("男");
-			list.add(user);
-			ResultDTO<List<User>> result = new ResultDTO<List<User>>();
-			result.setData(list);
-			return result.success(list,UserEnum.LOGINSTATUS.getMsg());
+		public ResultDTO<List<User>> userInfo(User user){
+			return userService.userInfo(user);
 		}
 		
 		@RequestMapping(value ="/islogin", method = RequestMethod.POST)
 	    @ResponseBody
 		public ResultDTO<User> islogin(HttpServletRequest request) {
 			log.info("请求是否登录接口");
-			ResultDTO<User> result = new ResultDTO<User>();
-			String value =  CookieUtils.getCookie(request, "loginstatus");
-			if(StringUtils.isBlank(value)) {
-				return result.fail("用户未登录");
-			}
-			Object results = redisUtil.get(value);
-			if(results == null) {
-				return result.fail("用户登录信息不存在");
-			}
-			log.info("状态吗:"+UserEnum.LOGINSTATUS.getMsg());
-			log.info("result:"+results.toString());
-			if(!UserEnum.LOGINSTATUS.getMsg().equals(String.valueOf(results))) {
-				return result.fail("用户登录信息不存在");
-			}
-			return result.success(value);
+			return userService.islogin(request);
 		}
 		
+		@RequestMapping(value ="/Jurisdiction", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<Jurisdiction> Jurisdiction(int jurisdictionId) {
+			return userService.Jurisdiction(jurisdictionId);
+		}
+		
+		@RequestMapping(value ="/changePwd", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<User> changePwd(User user) {
+			return userService.changePwd(user);
+		}
+		
+		@RequestMapping(value ="/update", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<User> update(User user) {
+			return userService.update(user);
+		}
+		
+		@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<User> delete(User user) {
+			return userService.delete(user);
+		}
+		
+		@RequestMapping(value ="/subjectList", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<List<Subject>> subjectList() {
+			return userService.subjectList();
+		}
+		
+		@RequestMapping(value ="/updateSubject", method = RequestMethod.POST)
+	    @ResponseBody
+		public ResultDTO<Subject> updateSubject(Subject subject) {
+			return userService.updateSubject(subject);
+		}
 }

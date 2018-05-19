@@ -53,7 +53,7 @@ td,th{padding:0;}
 .button[disabled]{pointer-events:none;cursor:not-allowed;webkit-box-shadow:none;box-shadow:none;filter:alpha(opacity=50);opacity:.5;}
 .button:active{background-image:none;outline:0;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;}
 .button:hover{transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;}
-.button-block{display:block;width:100%;}
+.button-block{display:inline;width:45%;}
 .button-large{padding:15px 20px;font-size:24px;line-height:24px;}
 .button-big{padding:10px 15px;font-size:18px;line-height:22px;}
 .button-small{padding:5px 10px;font-size:12px;font-weight:normal;line-height:18px;}
